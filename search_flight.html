@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Search Flights</title>
+</head>
+<body>
+  <h2>✈️ Search Flights</h2>
+
+  <!-- Search form -->
+  <form id="searchForm">
+    <label>From:</label>
+    <input type="text" id="from" placeholder="e.g. Sydney">
+    <br><br>
+
+    <label>To:</label>
+    <input type="text" id="to" placeholder="e.g. Melbourne">
+    <br><br>
+
+    <label>Date:</label>
+    <input type="date" id="date">
+    <br><br>
+
+    <input type="submit" value="Search">
+  </form>
+
+  <!-- This is where we will show the result -->
+  <p id="result" style="display: none;">
+    Showing result: Flight FD123 from Sydney to Melbourne at 10:00 AM
+  </p>
+
+  <script>
+    // When the user clicks "Search"
+    document.getElementById("searchForm").addEventListener("submit", function(event) {
+      // Stop the form from refreshing the page
+      event.preventDefault();
+
+      // Get the values from the input boxes
+      var fromValue = document.getElementById("from").value;
+      var toValue = document.getElementById("to").value;
+      var dateValue = document.getElementById("date").value;
+
+      // Create the result text using the input values
+      var text = "Showing result: Flight FD123 from " + fromValue + " to " + toValue + " on " + dateValue + " at 10:00 AM";
+
+      // Show the result paragraph and update the text
+      var result = document.getElementById("result");
+      result.style.display = "block";
+      result.textContent = text;
+    });
+  </script>
+</body>
+</html>

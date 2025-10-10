@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>FlyDreamAir Login (Beginner)</title>
+</head>
+<body>
+
+  <!-- Title -->
+  <h2>✈️ FlyDreamAir Login</h2>
+  <p>Please enter your details</p>
+
+  <!-- Login form -->
+  <form id="loginForm">
+    <label for="email">Email:</label><br>
+    <input type="text" id="email" name="email" placeholder="Enter your email"><br><br>
+
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password" placeholder="Enter your password"><br><br>
+
+    <!-- Log In button -->
+    <button type="submit">Log In</button><br><br>
+
+    <!-- Register button -->
+    <button type="button" onclick="showRegister()">Register</button>
+  </form>
+
+  <!-- Remember checkbox -->
+  <p>
+    <input type="checkbox" id="remember"> Remember for 30 days
+  </p>
+
+  <!-- This paragraph will show the login result -->
+  <p id="message"></p>
+
+  <script>
+    // When user clicks "Log In"
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+      // Prevent the form from refreshing or going to another page
+      event.preventDefault();
+
+      // Show a message on the page
+      var message = document.getElementById("message");
+      message.textContent = "✅ Login successful!";
+    });
+
+    // When user clicks "Register" button
+    function showRegister() {
+      var message = document.getElementById("message");
+      message.textContent = "📝 Register clicked!";
+    }
+  </script>
+
+</body>
+</html>

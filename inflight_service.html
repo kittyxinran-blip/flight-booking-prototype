@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>FlyDreamAir – In-Flight Services</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+  <!-- Page title -->
+  <h1>FlyDreamAir – In-Flight Services</h1>
+
+  <!-- The form contains three groups of checkboxes:
+       1) Meals
+       2) Drinks
+       3) Entertainment -->
+  <form id="serviceForm">
+
+    <!-- Meals group -->
+    <h2>Meals</h2>
+    <label><input type="checkbox" name="meal" value="Chicken Rice"> Chicken Rice</label><br>
+    <label><input type="checkbox" name="meal" value="Vegetarian Salad"> Vegetarian Salad</label><br>
+    <label><input type="checkbox" name="meal" value="Beef Noodles"> Beef Noodles</label>
+    <br><br>
+
+    <!-- Drinks group -->
+    <h2>Drinks</h2>
+    <label><input type="checkbox" name="drink" value="Coffee"> Coffee</label><br>
+    <label><input type="checkbox" name="drink" value="Orange Juice"> Orange Juice</label><br>
+    <label><input type="checkbox" name="drink" value="Water"> Water</label>
+    <br><br>
+
+    <!-- Entertainment group -->
+    <h2>Entertainment</h2>
+    <label><input type="checkbox" name="ent" value="Movies"> Movies</label><br>
+    <label><input type="checkbox" name="ent" value="Games"> Games</label><br>
+    <label><input type="checkbox" name="ent" value="Music"> Music</label>
+    <br><br>
+
+    <!-- This part shows what the user selected -->
+    <h3>You selected:</h3>
+    <div id="selectedList">
+      <p>(No selection yet)</p>
+    </div>
+    <br>
+
+    <!-- A button to confirm and show the selected services -->
+    <button type="button" onclick="showSelection()">Confirm selection</button>
+  </form>
+
+  <!-- A simple line separator -->
+  <p>------------------------------</p>
+
+  <!-- Legend -->
+  <p>✅ = Selected &nbsp;&nbsp; ⬜ = Not Selected</p>
+
+  <script>
+    // This function runs when the user clicks the "Confirm selection" button
+    function showSelection() {
+      // Get the area where we will show the selected items
+      var selectedList = document.getElementById("selectedList");
+
+      // Clear old content
+      selectedList.innerHTML = "";
+
+      // Find all checked checkboxes in the form
+      var checkedItems = document.querySelectorAll("input[type=checkbox]:checked");
+
+      // If nothing is selected, show a placeholder message
+      if (checkedItems.length === 0) {
+        selectedList.innerHTML = "<p>(No selection yet)</p>";
+        return;
+      }
+
+      // Go through each checked checkbox and show its value
+      for (var i = 0; i < checkedItems.length; i++) {
+        var item = checkedItems[i];
+
+        // Create a new <p> element
+        var p = document.createElement("p");
+
+        // Add the check mark and the service name
+        p.textContent = "✅ " + item.value;
+
+        // Add this <p> element inside the selectedList box
+        selectedList.appendChild(p);
+      }
+    }
+  </script>
+</body>
+</html>

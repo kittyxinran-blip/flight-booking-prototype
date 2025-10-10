@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>FlyDreamAir – Seat Selection (Beginner)</title>
+</head>
+<body>
+
+  <!-- Title and flight information -->
+  <h1>FlyDreamAir – Seat Selection</h1>
+  <p>Flight: <b>FD123 | SYD → MEL | 10:00AM</b></p>
+
+  <!-- Seat selection area -->
+  <h2>Select Your Seat</h2>
+
+  <!-- Seat buttons (rows A, B, C) -->
+  <div>
+    <button data-seat="A1">A1</button>
+    <button data-seat="A2">A2</button>
+    <button data-seat="A3">A3</button>
+    <button data-seat="A4">A4</button>
+  </div>
+  <br>
+  <div>
+    <button data-seat="B1">B1</button>
+    <button data-seat="B2">B2</button>
+    <button data-seat="B3">B3</button>
+    <button data-seat="B4">B4</button>
+  </div>
+  <br>
+  <div>
+    <button data-seat="C1">C1</button>
+    <button data-seat="C2">C2</button>
+    <button data-seat="C3">C3</button>
+    <button data-seat="C4">C4</button>
+  </div>
+
+  <!-- Show the selected seat -->
+  <h2>Your Selection</h2>
+  <p>Selected: <b id="selectedSeat">—</b></p>
+
+  <!-- Confirm button -->
+  <button id="confirmBtn" type="button">Confirm Seat</button>
+
+  <!-- Small note -->
+  <p>Tip: “(Selected)” = chosen seat. Disabled = unavailable seat.</p>
+
+  <script>
+    // Unavailable seats list
+    var unavailable = ['A3', 'B4', 'C2'];
+
+    // Get all seat buttons and result area
+    var seatButtons = document.querySelectorAll('button[data-seat]');
+    var selectedSeatText = document.getElementById('selectedSeat');
+    var confirmBtn = document.getElementById('confirmBtn');
+
+    // Store the current chosen seat
+    var currentSeat = '';
+    var currentBtn = null;
+
+    // Go through each seat button
+    for (var i = 0; i < seatButtons.length; i++) {
+      var btn = seatButtons[i];
+      var code = btn.getAttribute('data-seat');
+
+      // If the seat is unavailable, disable the button
+      if (unavailable.indexOf(code) !== -1) {
+        btn.disabled = true;
+        btn.title = code + ' (Unavailable)';
+      } else {
+        btn.title = 'Seat ' + code;
+      }
+
+      // When a seat is clicked
+      btn.addEventListener('click', function() {
+        // Remove previous “Selected” mark
+        if (currentBtn) {
+          currentBtn.textContent = currentBtn.getAttribute('data-seat');
+        }
+
+        // Mark the new seat as selected
+        currentBtn = this;
+        currentSeat = this.getAttribute('data-seat');
+        this.textContent = '(Selected) ' + currentSeat;
+
+        // Show the seat in the text below
+        selectedSeatText.textContent = currentSeat;
+      });
+    }
+
+    // When the confirm button is clicked
+    confirmBtn.addEventListener('click', function() {
+      if (currentSeat === '') {
+        // No seat chosen yet
+        alert('Please select a seat first ');
+      } else {
+        // Seat confirmed
+        alert('Seat ' + currentSeat + ' confirmed!');
+        // (Optional: save or go to next page)
+      }
+    });
+  </script>
+</body>
+</html>
